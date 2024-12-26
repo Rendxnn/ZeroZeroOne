@@ -1,0 +1,61 @@
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+$zeroOneLoginUrl = "https://api.zeroone.la/api/auth/login"
+
+$bodyLogin = @{
+    email = "{{ZeroOneUser}}"
+    password = "{{ZeroOnePassword}}"
+    EmpresaId = "{{CompanyId}}"
+} | ConvertTo-Json -Depth 10
+
+$headersLogin = @{
+    "Content-Type" = "application/json"
+}
+
+$loginResponse = Invoke-WebRequest -Uri $zeroOneLoginUrl -Method POST -Headers $headersLogin -Body $bodyLogin
+
+$token = ""
+
+if ($loginResponse.StatusCode -eq 200) {
+
+    Write-Host "Login exitoso"
+    $responseContent = $loginResponse.Content | ConvertFrom-Json
+    $token = $responseContent.token
+
+    Write-Host "Token: $($token)"
+} else {
+    Write-Host "Error al enviar petición: $($loginResponse.StatusCode) $($loginResponse.StatusDescription)"
+}
+Write-Host "Token: $($token)"
+
+# PETICION HORAS
+$vistaHoras = "https://api.zeroone.la/api/vistas/5f5962bf-fbb5-4543-0ea4-08da32d06ff0"
+
+$horasHeaders = @{
+    "Content-Type" = "application/json"
+    "Authorization" = "Bearer $token"
+}
+
+$bodyHoras = @{
+    dato = @{
+        ProyectoId = "{{ProjectId}}"
+        ActividadId = "{{ActivityId}}"
+        ClienteId = "{{ClientId}}"
+        Fecha = "{{Date}"
+        Horas = {{Minutes}} # horas está en minutos? 
+        Observacion = "{{Observation}}"
+    }
+}  | ConvertTo-Json -Depth 10
+
+$horasResponse = Invoke-WebRequest -Uri $vistaHoras -Method POST -Headers $horasHeaders -Body $bodyHoras
+
+# Imprimir el código de estado
+Write-Host "Código de estado: $($horasResponse.StatusCode)"
+
+# Imprimir el contenido de la respuesta
+if ($horasResponse.Content) {
+    Write-Host "Contenido de la respuesta:"
+    $horasResponse.Content | ConvertFrom-Json | Format-List
+} else {
+    Write-Host "No se recibió contenido en la respuesta."
+}
