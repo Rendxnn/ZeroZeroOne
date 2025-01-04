@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ZeroZeroOne.CLI": {
+      "commandName": "Project",
+      "commandLineArgs": "startproject"
+    }
+  }
+}
