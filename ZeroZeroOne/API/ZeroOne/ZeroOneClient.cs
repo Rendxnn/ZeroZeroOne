@@ -1,6 +1,9 @@
 ﻿using System.Net.Mime;
+using System.Text;
 using System.Text.Json;
-using ZeroZeroOne.Entities.ZeroOne;
+using System.Text.Json.Serialization;
+using ZeroZeroOne.API.ZeroOne.Models;
+using ZeroZeroOne.Utils;
 
 namespace ZeroZeroOne.API.ZeroOne;
 
@@ -8,7 +11,7 @@ namespace ZeroZeroOne.API.ZeroOne;
 
 public class ZeroOneClient
 {
-    private readonly string _baseUrl;
+    private readonly Uri _baseUrl;
     private readonly string _companyId;
     private readonly string _username;
     private readonly string _password;
@@ -16,33 +19,46 @@ public class ZeroOneClient
 
     public ZeroOneClient(string username, string password)
     {
-        _baseUrl = "https://api.zeroone.la/api/";
-        _companyId = "24b6c5d5-5653-4a98-be3b-48eed320f4cd";
+        _baseUrl = new Uri("https://api.zeroone.la/api/");
+        _companyId = ZeroOneConstants.EmasTCompanyId;
         _username = username;
         _password = password;
         _httpClient = new HttpClient();
     }
 
-    private async Task<ZeroOneModels.LoginResponse> Login()
+    private async Task Login()
     {
-        string baseUrl = Path.Combine("auth", "login");
+        Uri baseUrl = new(_baseUrl, "auth/login");
 
         ZeroOneModels.LoginRequest request = new() { Email = _username, Password = _password, CompanyId = _companyId };
 
-        StringContent requestContent = new(JsonSerializer.Serialize(request));
+        string serializedRequest = JsonSerializer.Serialize(request);
+
+        StringContent requestContent = new(serializedRequest, Encoding.UTF8, "application/json");
 
         HttpResponseMessage response = await _httpClient.PostAsync(baseUrl, requestContent);
 
         string responseContent = await response.Content.ReadAsStringAsync();
 
-        ZeroOneModels.LoginResponse? loginResponse = JsonSerializer.Deserialize<ZeroOneModels.LoginResponse>(responseContent);
+        ZeroOneModels.LoginResponse loginResponse = JsonSerializer.Deserialize<ZeroOneModels.LoginResponse>(responseContent)
+            ?? throw new Exception("Error while trying to log in");
 
-        return loginResponse ?? throw new Exception("Error while trying to log in");
+        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {loginResponse.Token}");
     }
 
-    public Options GetOptions()
+    public async Task<ListsResponse> GetOptions()
     {
-        throw new NotImplementedException();
+        await Login();
+
+        Uri url = new Uri(_baseUrl, $"vistas/{ZeroOneConstants.HoursRegistryViewId}/cargar-listas");
+
+        HttpResponseMessage response = await _httpClient.PostAsync(url, new StringContent("{}", Encoding.UTF8, "application/json"));
+
+        string responseContent = await response.Content.ReadAsStringAsync();
+
+        ListsResponse lists = JsonSerializer.Deserialize<ListsResponse>(responseContent) ?? throw new Exception("Error while getting lists from ZeroOne");
+
+        return lists;
     }
 }
 

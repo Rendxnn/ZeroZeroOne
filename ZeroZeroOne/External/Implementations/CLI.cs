@@ -16,7 +16,7 @@ namespace ZeroZeroOne.External.Implementations
                 Console.WriteLine("ZeroOne Password: ");
                 string? password = Console.ReadLine();
 
-                if (!string.IsNullOrEmpty(username) && string.IsNullOrEmpty(password)) return (username!, password!);
+                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password)) return (username!, password!);
 
                 Console.WriteLine("Try again");
             }

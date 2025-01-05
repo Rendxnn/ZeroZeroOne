@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ZeroZeroOne.Entities.ZeroOne
+namespace ZeroZeroOne.API.ZeroOne.Models
 {
     public class Project
     {

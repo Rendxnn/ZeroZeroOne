@@ -15,8 +15,13 @@ namespace ZeroZeroOne.API.ZeroOne
 
         public record LoginResponse
         {
+            [JsonPropertyName("message")]
             public string? Message { get; set; }
+
+            [JsonPropertyName("token")]
             public string? Token { get; set; }
+
+            [JsonPropertyName("userName")]
             public string? Username { get; set; }
         }
     }

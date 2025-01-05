@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ZeroZeroOne.Entities.ZeroOne
+namespace ZeroZeroOne.API.ZeroOne.Models
 {
-    public class Options
+    public class ListsResponse
     {
         [JsonPropertyName("Actividades")]
         public List<Activity> Activities { get; set; } = [];

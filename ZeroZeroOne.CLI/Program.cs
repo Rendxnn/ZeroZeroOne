@@ -8,13 +8,13 @@ public class Program
     private static readonly CLI CLI = new();
     private static readonly SetUpManager setUpManager = new(CLI);
 
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         foreach (string arg in args)
         {
             if (arg == CommandConstants.StartProjectCommand)
             {
-                setUpManager.SetUpProject();
+                await setUpManager.SetUpProject();
             }
         }
     }
