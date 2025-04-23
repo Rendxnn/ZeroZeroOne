@@ -30,7 +30,9 @@ if (-not ($m -as [int]) -or [int]$m -le 0) {
 if ($oMatch.Success) {
     $o = $oMatch.Groups[1].Value.Trim()
 } else {
-    $o = $commitMsg.Trim()
+    # Eliminar etiquetas m:... y o:... del mensaje
+    $o = $commitMsg -replace "m:\d+", "" -replace "o:[^\]]+", ""
+    $o = $o.Trim()
 }
 
 # Mostrar parámetros
@@ -83,10 +85,8 @@ $bodyHoras = @{
 
 $horasResponse = Invoke-WebRequest -Uri $vistaHoras -Method POST -Headers $horasHeaders -Body $bodyHoras
 
-Write-Host "Código de estado: $($horasResponse.StatusCode)"
-if ($horasResponse.Content) {
-    Write-Host "Contenido de la respuesta:"
-    $horasResponse.Content | ConvertFrom-Json | Format-List
+if ($horasResponse.StatusCode -eq 200 -or $horasResponse.StatusCode -eq 201) {
+    Write-Host "Horas registradas correctamente ;)"
 } else {
-    Write-Host "No se recibió contenido en la respuesta."
+    Write-Host "Hubo un error registrando las horas. Código de estado: $($horasResponse.StatusCode)"
 }
