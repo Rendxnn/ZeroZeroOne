@@ -22,7 +22,7 @@ if ($mMatch.Success) {
 
 # Validar minutos
 if (-not ($m -as [int]) -or [int]$m -le 0) {
-    Write-Host "No se registrarán horas: el valor de minutos es inválido."
+    Write-Host "No se registrarán horas: el valor de minutos es inválido." 
     exit 0
 }
 
