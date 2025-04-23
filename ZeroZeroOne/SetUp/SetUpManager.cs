@@ -3,6 +3,7 @@ using ZeroZeroOne.API.ZeroOne.Models;
 using ZeroZeroOne.Entities;
 using ZeroZeroOne.External.Interfaces;
 using ZeroZeroOne.Utils;
+using System.Reflection;
 
 namespace ZeroZeroOne.SetUp
 {
@@ -32,8 +33,23 @@ namespace ZeroZeroOne.SetUp
             #endif
 
             string postCommitPath = Path.Combine(basePath, FileConstants.PostCommitPath);
-            string templatePath = Path.Combine(Directory.GetCurrentDirectory(), FileConstants.PostCommitTemplatePath);
-            string templateContent = File.ReadAllText(templatePath);
+            
+            string templateContent;
+            var assembly = Assembly.GetExecutingAssembly();
+            string resourceName = "ZeroZeroOne.Templates.post-commit-template.txt";
+            
+            using (Stream? stream = assembly.GetManifestResourceStream(resourceName))
+            {
+                if (stream == null)
+                {
+                    throw new FileNotFoundException($"No se pudo encontrar el recurso: {resourceName}");
+                }
+                
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    templateContent = reader.ReadToEnd();
+                }
+            }
 
             ListsResponse options = await zeroOneClient.GetOptions();
 
@@ -41,8 +57,14 @@ namespace ZeroZeroOne.SetUp
 
             string replacedContent = ReplaceOnTemplate(templateContent, _userCredentials, projectInformation);
 
-
+            try {
             File.WriteAllText(postCommitPath, replacedContent);
+
+            }
+            catch 
+            {
+                _UI.ShowError($"No se ha encontrado la carpeta .git en el proyecto. git init? un cd de más? ;)");
+            }
 
             return;
         }

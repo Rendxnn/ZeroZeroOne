@@ -6,6 +6,11 @@ namespace ZeroZeroOne.External.Implementations
 {
     public class CLI : IUI
     {
+        public void ShowError(string message)
+        {
+            Console.WriteLine(message);
+        }
+
         public UserCredentials ReadCredentials()
         {
             while (true)

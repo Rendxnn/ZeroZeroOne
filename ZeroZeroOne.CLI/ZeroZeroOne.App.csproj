@@ -1,14 +1,32 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    
+    <!-- Configuración para herramienta global -->
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>zerozeroone</ToolCommandName>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
+    
+    <!-- Información del paquete -->
+    <Version>1.0.2</Version>
+    <PackageId>ZeroZeroOne.CLI</PackageId>
+    <Authors>Samuel Rendon Trujillo</Authors>
+    <Company>Emast</Company>
+    <Description>Herramienta para configurar hooks de post-commit que registran tiempo en ZeroOne</Description>
+    <PackageTags>git;hook;zeroone;time-tracking</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ZeroZeroOne\ZeroZeroOne.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
-</Project>
+</Project> 

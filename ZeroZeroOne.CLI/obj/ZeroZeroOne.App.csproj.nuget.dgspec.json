@@ -5,10 +5,10 @@
   },
   "projects": {
     "C:\\Users\\samir\\source\\repos\\ZeroZeroOne\\ZeroZeroOne.CLI\\ZeroZeroOne.App.csproj": {
-      "version": "1.0.0",
+      "version": "1.0.2",
       "restore": {
         "projectUniqueName": "C:\\Users\\samir\\source\\repos\\ZeroZeroOne\\ZeroZeroOne.CLI\\ZeroZeroOne.App.csproj",
-        "projectName": "ZeroZeroOne.App",
+        "projectName": "ZeroZeroOne.CLI",
         "projectPath": "C:\\Users\\samir\\source\\repos\\ZeroZeroOne\\ZeroZeroOne.CLI\\ZeroZeroOne.App.csproj",
         "packagesPath": "C:\\Users\\samir\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\samir\\source\\repos\\ZeroZeroOne\\ZeroZeroOne.CLI\\obj\\",

@@ -1,0 +1,12 @@
+C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne\bin\Release\net8.0\ZeroZeroOne.deps.json
+C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne\bin\Release\net8.0\ZeroZeroOne.dll
+C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne\bin\Release\net8.0\ZeroZeroOne.pdb
+C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne\obj\Release\net8.0\ZeroZeroOne.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne\obj\Release\net8.0\ZeroZeroOne.AssemblyInfoInputs.cache
+C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne\obj\Release\net8.0\ZeroZeroOne.AssemblyInfo.cs
+C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne\obj\Release\net8.0\ZeroZeroOne.csproj.CoreCompileInputs.cache
+C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne\obj\Release\net8.0\ZeroZeroOne.sourcelink.json
+C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne\obj\Release\net8.0\ZeroZeroOne.dll
+C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne\obj\Release\net8.0\refint\ZeroZeroOne.dll
+C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne\obj\Release\net8.0\ZeroZeroOne.pdb
+C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne\obj\Release\net8.0\ref\ZeroZeroOne.dll

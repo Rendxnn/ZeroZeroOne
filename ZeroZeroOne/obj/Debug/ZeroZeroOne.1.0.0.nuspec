@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>ZeroZeroOne</id>
+    <version>1.0.0</version>
+    <authors>ZeroZeroOne</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="dd66203dfef259f792805a88fa6ecef0b7a8605e" />
+    <dependencies>
+      <group targetFramework="net8.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne\bin\Debug\net8.0\ZeroZeroOne.dll" target="lib\net8.0\ZeroZeroOne.dll" />
+  </files>
+</package>

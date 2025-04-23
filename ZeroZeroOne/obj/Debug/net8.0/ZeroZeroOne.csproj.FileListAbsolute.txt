@@ -1,4 +1,3 @@
-C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne\bin\Debug\net8.0\Templates\post-commit-template.txt
 C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne\bin\Debug\net8.0\ZeroZeroOne.deps.json
 C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne\bin\Debug\net8.0\ZeroZeroOne.dll
 C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne\bin\Debug\net8.0\ZeroZeroOne.pdb

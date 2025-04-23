@@ -7,5 +7,6 @@ namespace ZeroZeroOne.External.Interfaces
     {
         UserCredentials ReadCredentials();
         ProjectInformation ReadProjectInformation(ListsResponse options);
+        void ShowError(string message);
     }
 }

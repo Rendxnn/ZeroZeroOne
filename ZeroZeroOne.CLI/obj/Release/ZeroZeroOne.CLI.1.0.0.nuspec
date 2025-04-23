@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>ZeroZeroOne.CLI</id>
+    <version>1.0.0</version>
+    <authors>Samuel Rendon Trujillo</authors>
+    <readme>README.md</readme>
+    <description>Herramienta para configurar hooks de post-commit que registran tiempo en ZeroOne</description>
+    <tags>git hook zeroone time-tracking</tags>
+    <packageTypes>
+      <packageType name="DotnetTool" />
+    </packageTypes>
+    <repository type="git" commit="dd66203dfef259f792805a88fa6ecef0b7a8605e" />
+  </metadata>
+  <files>
+    <file src="C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne.CLI\obj\DotnetToolSettings.xml" target="tools\net8.0\any\DotnetToolSettings.xml" />
+    <file src="C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne.CLI\bin\Release\net8.0\publish\Templates\post-commit-template.txt" target="tools\net8.0\any\Templates\post-commit-template.txt" />
+    <file src="C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne.CLI\bin\Release\net8.0\publish\ZeroZeroOne.App.dll" target="tools\net8.0\any\ZeroZeroOne.App.dll" />
+    <file src="C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne.CLI\bin\Release\net8.0\publish\ZeroZeroOne.App.deps.json" target="tools\net8.0\any\ZeroZeroOne.App.deps.json" />
+    <file src="C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne.CLI\bin\Release\net8.0\publish\ZeroZeroOne.App.runtimeconfig.json" target="tools\net8.0\any\ZeroZeroOne.App.runtimeconfig.json" />
+    <file src="C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne.CLI\bin\Release\net8.0\publish\ZeroZeroOne.App.pdb" target="tools\net8.0\any\ZeroZeroOne.App.pdb" />
+    <file src="C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne.CLI\bin\Release\net8.0\publish\ZeroZeroOne.dll" target="tools\net8.0\any\ZeroZeroOne.dll" />
+    <file src="C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne.CLI\bin\Release\net8.0\publish\ZeroZeroOne.pdb" target="tools\net8.0\any\ZeroZeroOne.pdb" />
+    <file src="C:\Users\samir\source\repos\ZeroZeroOne\README.md" target="\README.md" />
+  </files>
+</package>

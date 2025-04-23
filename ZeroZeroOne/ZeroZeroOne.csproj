@@ -7,9 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="Templates\post-commit-template.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <EmbeddedResource Include="Templates\post-commit-template.txt" />
   </ItemGroup>
 
 </Project>
