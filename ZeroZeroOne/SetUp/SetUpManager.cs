@@ -33,6 +33,7 @@ namespace ZeroZeroOne.SetUp
             #endif
 
             string postCommitPath = Path.Combine(basePath, FileConstants.PostCommitPath);
+            string postCommitPowershellPath = Path.Combine(basePath, FileConstants.PostCommitPowershellPath);
             
             string templateContent;
             var assembly = Assembly.GetExecutingAssembly();
@@ -58,7 +59,8 @@ namespace ZeroZeroOne.SetUp
             string replacedContent = ReplaceOnTemplate(templateContent, _userCredentials, projectInformation);
 
             try {
-                File.WriteAllText(postCommitPath, replacedContent);
+                File.WriteAllText(postCommitPath, PostCommitConstants.PostCommitContent);
+                File.WriteAllText(postCommitPowershellPath, replacedContent);
             }
             catch 
             {

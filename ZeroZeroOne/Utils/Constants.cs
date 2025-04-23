@@ -2,7 +2,8 @@
 {
     public class FileConstants
     {
-        public const string PostCommitPath = ".git/hooks/post-commit.ps1";
+        public const string PostCommitPath = ".git/hooks/post-commit";
+        public const string PostCommitPowershellPath = ".git/hooks/post-commit.ps1";
     }
 
     public class ZeroOneConstants
@@ -14,5 +15,11 @@
     public class CommandConstants
     {
         public const string StartProjectCommand = "startproject";
+    }
+
+    public class PostCommitConstants
+    {
+        public const string PostCommitContent = @"#!/bin/bash
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .git/hooks/post-commit.ps1";
     }
 }
