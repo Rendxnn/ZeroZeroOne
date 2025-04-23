@@ -36,8 +36,7 @@ if ($oMatch.Success) {
 }
 
 # Mostrar parámetros
-Write-Host "Minutos: $m"
-Write-Host "Observación: $o"
+Write-Host "Minutos detectados: $m"
 
 # ---------------------
 # LOGIN
@@ -56,7 +55,6 @@ $loginResponse = Invoke-WebRequest -Uri $zeroOneLoginUrl -Method POST -Headers $
 $token = ""
 
 if ($loginResponse.StatusCode -eq 200) {
-    Write-Host "Login exitoso"
     $responseContent = $loginResponse.Content | ConvertFrom-Json
     $token = $responseContent.token
 } else {
