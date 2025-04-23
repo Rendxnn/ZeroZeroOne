@@ -4,7 +4,7 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 $m = $env:m
 $o = $env:o
 
-# Si no se pasa 'm' (minutos), pedirlo por pantalla
+# Si no se pasa 'm' (minutos), pedirlo por pantalla 
 if (-not $m) {
     $m = Read-Host "¿Cuántos minutos quieres registrar?"
 }
