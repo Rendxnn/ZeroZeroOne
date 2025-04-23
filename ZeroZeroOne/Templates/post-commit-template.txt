@@ -3,7 +3,7 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 # Leer el mensaje del commit
 $commitMsgFile = ".git/COMMIT_EDITMSG"
 if (-not (Test-Path $commitMsgFile)) {
-    Write-Host "No se encontró el archivo del mensaje del commit."
+    Write-Host "No se encontrï¿½ el archivo del mensaje del commit."
     exit 0
 }
 
@@ -16,17 +16,17 @@ $oMatch = [regex]::Match($commitMsg, "o:([^\]]+)")
 if ($mMatch.Success) {
     $m = $mMatch.Groups[1].Value
 } else {
-    Write-Host "No se registrarán horas: no se especificó 'm:[minutos]' en el mensaje del commit."
+    Write-Host "No se registran horas."
     exit 0
 }
 
 # Validar minutos
 if (-not ($m -as [int]) -or [int]$m -le 0) {
-    Write-Host "No se registrarán horas: el valor de minutos es inválido." 
+    Write-Host "No se registrarï¿½n horas: el valor de minutos es invï¿½lido." 
     exit 0
 }
 
-# Obtener la observación
+# Obtener la observaciï¿½n
 if ($oMatch.Success) {
     $o = $oMatch.Groups[1].Value.Trim()
 } else {
@@ -35,7 +35,7 @@ if ($oMatch.Success) {
     $o = $o.Trim()
 }
 
-# Mostrar parámetros
+# Mostrar parï¿½metros
 Write-Host "Minutos detectados: $m"
 
 # ---------------------
@@ -58,12 +58,12 @@ if ($loginResponse.StatusCode -eq 200) {
     $responseContent = $loginResponse.Content | ConvertFrom-Json
     $token = $responseContent.token
 } else {
-    Write-Host "Error al enviar petición: $($loginResponse.StatusCode) $($loginResponse.StatusDescription)"
+    Write-Host "Error al enviar peticiï¿½n: $($loginResponse.StatusCode) $($loginResponse.StatusDescription)"
     exit 1
 }
 
 # ---------------------
-# PETICIÓN HORAS
+# PETICIï¿½N HORAS
 $vistaHoras = "https://api.zeroone.la/api/vistas/5f5962bf-fbb5-4543-0ea4-08da32d06ff0"
 $horasHeaders = @{
     "Content-Type" = "application/json"
@@ -75,7 +75,7 @@ $bodyHoras = @{
         ProyectoId = "{{ProjectId}}"
         ActividadId = "{{ActivityId}}"
         ClienteId = "{{ClientId}}"
-        Fecha = "{{Date}}"  # Debes reemplazar esto dinámicamente si quieres la fecha actual
+        Fecha = "{{Date}}"  # Debes reemplazar esto dinï¿½micamente si quieres la fecha actual
         Horas = $m
         Observacion = $o
     }
@@ -86,5 +86,5 @@ $horasResponse = Invoke-WebRequest -Uri $vistaHoras -Method POST -Headers $horas
 if ($horasResponse.StatusCode -eq 200 -or $horasResponse.StatusCode -eq 201) {
     Write-Host "Horas registradas correctamente ;)"
 } else {
-    Write-Host "Hubo un error registrando las horas. Código de estado: $($horasResponse.StatusCode)"
+    Write-Host "Hubo un error registrando las horas. Cï¿½digo de estado: $($horasResponse.StatusCode)"
 }
