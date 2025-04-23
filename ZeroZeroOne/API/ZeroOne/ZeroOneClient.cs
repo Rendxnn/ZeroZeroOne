@@ -1,13 +1,9 @@
-﻿using System.Net.Mime;
-using System.Text;
+﻿using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using ZeroZeroOne.API.ZeroOne.Models;
 using ZeroZeroOne.Utils;
 
 namespace ZeroZeroOne.API.ZeroOne;
-
-
 
 public class ZeroOneClient
 {
@@ -50,7 +46,7 @@ public class ZeroOneClient
     {
         await Login();
 
-        Uri url = new Uri(_baseUrl, $"vistas/{ZeroOneConstants.HoursRegistryViewId}/cargar-listas");
+        Uri url = new(_baseUrl, $"vistas/{ZeroOneConstants.HoursRegistryViewId}/cargar-listas");
 
         HttpResponseMessage response = await _httpClient.PostAsync(url, new StringContent("{}", Encoding.UTF8, "application/json"));
 

@@ -12,6 +12,5 @@ namespace ZeroZeroOne.API.ZeroOne.Models
 
         [JsonPropertyName("Proyectos")]
         public List<Project> Projects { get; set; } = [];
-
     }
 }

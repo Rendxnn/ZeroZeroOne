@@ -1,5 +1,6 @@
 ﻿using ZeroZeroOne.API.ZeroOne;
 using ZeroZeroOne.API.ZeroOne.Models;
+using ZeroZeroOne.Entities;
 using ZeroZeroOne.External.Interfaces;
 using ZeroZeroOne.Utils;
 
@@ -8,33 +9,54 @@ namespace ZeroZeroOne.SetUp
     public class SetUpManager
     {
         private readonly IUI _UI;
+        private readonly UserCredentials _userCredentials;
+        private readonly ProjectInformation _projectInformation = new();
         private readonly ZeroOneClient zeroOneClient;
-        private readonly string email;
-        private readonly string password;
 
         public SetUpManager(IUI UI)
         {
             _UI = UI;
-            (email, password) = _UI.ReadCredentials();
-            zeroOneClient = new ZeroOneClient(email, password);
+            _userCredentials = _UI.ReadCredentials();
+            zeroOneClient = new ZeroOneClient(_userCredentials.Username, _userCredentials.Password);
+
         }
+
         public async Task SetUpProject()
         {
+            string basePath;
+
+            #if DEBUG
+                basePath = @"C:\Users\samir\source\repos\ZeroZeroOne";
+            #else
+                basePath = Directory.GetCurrentDirectory();
+            #endif
+
+            string postCommitPath = Path.Combine(basePath, FileConstants.PostCommitPath);
             string templatePath = Path.Combine(Directory.GetCurrentDirectory(), FileConstants.PostCommitTemplatePath);
             string templateContent = File.ReadAllText(templatePath);
 
             ListsResponse options = await zeroOneClient.GetOptions();
 
+            ProjectInformation projectInformation = _UI.ReadProjectInformation(options);
 
-            templateContent = ReplaceOnTemplate(templateContent);
+            string replacedContent = ReplaceOnTemplate(templateContent, _userCredentials, projectInformation);
+
+
+            File.WriteAllText(postCommitPath, replacedContent);
+
+            return;
         }
 
-        private string ReplaceOnTemplate(string template)
+        private static string ReplaceOnTemplate(string template, UserCredentials userCredentials, ProjectInformation projectInformation)
         {
             template = template
-                .Replace("{{ZeroOneUser}}", email)
-                .Replace("{{ZeroOnePassword}}", password)
-                .Replace("{{CompanyId}}", ZeroOneConstants.EmasTCompanyId);
+                .Replace("{{ZeroOneUser}}", userCredentials.Username)
+                .Replace("{{ZeroOnePassword}}", userCredentials.Password)
+                .Replace("{{CompanyId}}", ZeroOneConstants.EmasTCompanyId)
+                .Replace("{{ProjectId}}", projectInformation.Project.ProjectId)
+                .Replace("{{ActivityId}}", projectInformation.Activity.ActivityId)
+                .Replace("{{ClientId}}", projectInformation.Client.ClientId)
+                .Replace("{{Date}}", DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
 
 
             return template;

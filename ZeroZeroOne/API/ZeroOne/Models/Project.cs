@@ -9,5 +9,8 @@ namespace ZeroZeroOne.API.ZeroOne.Models
 
         [JsonPropertyName("Nombre")]
         public string Name { get; set; } = null!;
+
+        [JsonPropertyName("ClienteId")]
+        public string ClientId { get; set; } = null!;
     }
 }

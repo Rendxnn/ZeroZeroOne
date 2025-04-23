@@ -1,7 +1,11 @@
-﻿namespace ZeroZeroOne.External.Interfaces
+﻿using ZeroZeroOne.API.ZeroOne.Models;
+using ZeroZeroOne.Entities;
+
+namespace ZeroZeroOne.External.Interfaces
 {
     public interface IUI
     {
-        (string email, string password) ReadCredentials(); 
+        UserCredentials ReadCredentials();
+        ProjectInformation ReadProjectInformation(ListsResponse options);
     }
 }

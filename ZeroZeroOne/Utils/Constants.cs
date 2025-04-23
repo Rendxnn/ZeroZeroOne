@@ -3,6 +3,7 @@
     public class FileConstants
     {
         public const string PostCommitTemplatePath = "Templates/post-commit-template.txt";
+        public const string PostCommitPath = ".git/hooks/post-commit.ps1";
     }
 
     public class ZeroOneConstants

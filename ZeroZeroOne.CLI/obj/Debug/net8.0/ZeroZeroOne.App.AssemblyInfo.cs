@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZeroZeroOne.App")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d9a822aa899a1ef08f4fe2e18732f81faf09ab7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4407f2be55038e6ca6165d86d9e38ee86c333dc2")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZeroZeroOne.App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZeroZeroOne.App")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,7 +1,38 @@
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
-$zeroOneLoginUrl = "https://api.zeroone.la/api/auth/login"
+# Obtener parámetros de entorno
+$m = $env:m
+$o = $env:o
 
+# Si no se pasa 'm' (minutos), pedirlo por pantalla
+if (-not $m) {
+    $m = Read-Host "¿Cuántos minutos quieres registrar?"
+}
+
+# Validar que el valor sea un número mayor a cero
+if (-not $m -or -not ($m -as [int]) -or [int]$m -le 0) {
+    Write-Host "No se registrarán horas (valor inválido o vacío)."
+    exit 0
+}
+
+# Si no se pasa 'o' (observación), pedirlo por pantalla
+if (-not $o) {
+    $commitMsgFile = ".git/COMMIT_EDITMSG"
+    if (Test-Path $commitMsgFile) {
+        $defaultObservation = Get-Content $commitMsgFile
+    }
+    $o = Read-Host "Observación (Enter para usar el mensaje del commit)"
+    if (-not $o -and $defaultObservation) {
+        $o = $defaultObservation
+    }
+}
+
+# Mostrar los parámetros obtenidos
+Write-Host "Minutos: $m"
+Write-Host "Observación: $o"
+
+# LOGIN
+$zeroOneLoginUrl = "https://api.zeroone.la/api/auth/login"
 $bodyLogin = @{
     email = "{{ZeroOneUser}}"
     password = "{{ZeroOnePassword}}"
@@ -13,46 +44,42 @@ $headersLogin = @{
 }
 
 $loginResponse = Invoke-WebRequest -Uri $zeroOneLoginUrl -Method POST -Headers $headersLogin -Body $bodyLogin
-
 $token = ""
 
 if ($loginResponse.StatusCode -eq 200) {
-
     Write-Host "Login exitoso"
     $responseContent = $loginResponse.Content | ConvertFrom-Json
     $token = $responseContent.token
-
-    Write-Host "Token: $($token)"
 } else {
     Write-Host "Error al enviar petición: $($loginResponse.StatusCode) $($loginResponse.StatusDescription)"
+    exit 1
 }
-Write-Host "Token: $($token)"
 
-# PETICION HORAS
+# PETICIÓN HORAS
 $vistaHoras = "https://api.zeroone.la/api/vistas/5f5962bf-fbb5-4543-0ea4-08da32d06ff0"
-
 $horasHeaders = @{
     "Content-Type" = "application/json"
     "Authorization" = "Bearer $token"
 }
 
+# Construir el cuerpo con los valores recibidos
 $bodyHoras = @{
     dato = @{
         ProyectoId = "{{ProjectId}}"
         ActividadId = "{{ActivityId}}"
         ClienteId = "{{ClientId}}"
-        Fecha = "{{Date}"
-        Horas = {{Minutes}} # horas está en minutos? 
-        Observacion = "{{Observation}}"
+        Fecha = "{{Date}}"  # Asegúrate de que Date esté formateado correctamente
+        Horas = $m
+        Observacion = $o
     }
-}  | ConvertTo-Json -Depth 10
+} | ConvertTo-Json -Depth 10
 
+# Enviar la petición
 $horasResponse = Invoke-WebRequest -Uri $vistaHoras -Method POST -Headers $horasHeaders -Body $bodyHoras
 
-# Imprimir el código de estado
+# Imprimir el código de estado y contenido de la respuesta
 Write-Host "Código de estado: $($horasResponse.StatusCode)"
 
-# Imprimir el contenido de la respuesta
 if ($horasResponse.Content) {
     Write-Host "Contenido de la respuesta:"
     $horasResponse.Content | ConvertFrom-Json | Format-List

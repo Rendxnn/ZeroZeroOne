@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FF8F35B8-D971-4CA1-8E94-6BC7C6DDCC5B}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		.git\hooks\post-commit.ps1 = .git\hooks\post-commit.ps1
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZeroZeroOne.App", "ZeroZeroOne.CLI\ZeroZeroOne.App.csproj", "{66283391-E46A-4E3E-A2A2-D2AABCB31250}"
