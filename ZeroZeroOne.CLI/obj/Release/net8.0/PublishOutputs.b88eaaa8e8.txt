@@ -1,7 +1,0 @@
-C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne.CLI\bin\Release\net8.0\publish\ZeroZeroOne.App.exe
-C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne.CLI\bin\Release\net8.0\publish\ZeroZeroOne.App.dll
-C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne.CLI\bin\Release\net8.0\publish\ZeroZeroOne.App.deps.json
-C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne.CLI\bin\Release\net8.0\publish\ZeroZeroOne.App.runtimeconfig.json
-C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne.CLI\bin\Release\net8.0\publish\ZeroZeroOne.App.pdb
-C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne.CLI\bin\Release\net8.0\publish\ZeroZeroOne.dll
-C:\Users\samir\source\repos\ZeroZeroOne\ZeroZeroOne.CLI\bin\Release\net8.0\publish\ZeroZeroOne.pdb

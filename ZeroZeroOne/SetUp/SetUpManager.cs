@@ -58,8 +58,7 @@ namespace ZeroZeroOne.SetUp
             string replacedContent = ReplaceOnTemplate(templateContent, _userCredentials, projectInformation);
 
             try {
-            File.WriteAllText(postCommitPath, replacedContent);
-
+                File.WriteAllText(postCommitPath, replacedContent);
             }
             catch 
             {
